@@ -25,11 +25,14 @@ const userSlice = createSlice({
       console.log("login");
     },
     logoutUser: (state) => {
-      console.log("logout");
+      state.user = null;
+      localStorage.removeItem("user");
+      toast.success("Logged out successfully!");
     },
     toggleTheme: (state) => {
       const { dracula, winter } = themes;
       state.theme = state.theme === dracula ? winter : dracula;
+      // sets an attribute on the root element with the name "data-theme" and a value from state.theme
       document.documentElement.setAttribute("data-theme", state.theme);
       localStorage.setItem("theme", state.theme);
     },
